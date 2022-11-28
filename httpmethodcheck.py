@@ -5,28 +5,20 @@ URL = input()
 
 protocol, domain = URL.split("://")
 
-if protocol == "http":
-    print(protocol, domain)
-    
-    options = ['GET', 'POST', 'PUT', 'DELETE', 'CONNECT', 'TRACE', 'OPTIONS', 'HEAD', 'ARBITRARY']
+options = ['GET', 'POST', 'PUT', 'DELETE', 'CONNECT', 'TRACE', 'OPTIONS', 'HEAD', 'ARBITRARY']
 
-    for opt in options:
+def test_options():
+        conn.request(opt, '/')
+        response = conn.getresponse()
+        print(opt, response.status, response.reason)
+
+for opt in options:
+    if protocol == "http":
         conn = http.client.HTTPConnection(domain)
-        conn.request(opt, '/')
-        response = conn.getresponse()
-        print(opt, response.status, response.reason)
-
-elif protocol == "https":
-    print(protocol, domain)
-
-    options = ['GET', 'POST', 'PUT', 'DELETE', 'CONNECT', 'TRACE', 'OPTIONS', 'HEAD', 'ARBITRARY']
-
-    for opt in options:
+        test_options()
+    elif protocol == "https":
         conn = http.client.HTTPSConnection(domain)
-        conn.request(opt, '/')
-        response = conn.getresponse()
-        print(opt, response.status, response.reason)
-
-else:
-    print ('Invalid value...')
-    exit()
+        test_options()
+    else:
+        print ('Invalid value...')
+        exit()

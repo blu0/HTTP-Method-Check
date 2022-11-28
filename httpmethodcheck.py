@@ -8,9 +8,9 @@ protocol, domain = URL.split("://")
 options = ['GET', 'POST', 'PUT', 'DELETE', 'CONNECT', 'TRACE', 'OPTIONS', 'HEAD', 'ARBITRARY']
 
 def test_options():
-        conn.request(opt, '/')
-        response = conn.getresponse()
-        print(opt, response.status, response.reason)
+    conn.request(opt, '/')
+    response = conn.getresponse()
+    print(opt, response.status, response.reason)
 
 for opt in options:
     if protocol.lower() == "http":
